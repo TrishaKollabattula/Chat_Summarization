@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatSummify</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom Glow Effect */
+    .glow:hover {
+      text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF88;
+    }
+    /* Input Box Animation */
+    .input-glow:focus {
+      box-shadow: 0 0 10px #00FF88, 0 0 20px #00FF88;
+    }
+    /* Button Hover Animation */
+    .btn-hover:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+    /* Image Hover Animation */
+    .img-hover:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease-in-out;
+    }
+    /* Hide Sections Initially */
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header -->
+  <header class="text-center py-6">
+    <h1 class="text-4xl font-bold glow">ChatSummify</h1>
+    <p class="text-gray-400">Your AI-Powered Chat Summarization Tool</p>
+    <nav class="mt-4">
+      <button onclick="showPage('home')" class="mx-2 text-blue-400 hover:text-blue-300">Home</button>
+      <button onclick="showPage('about')" class="mx-2 text-purple-400 hover:text-purple-300">About</button>
+    </nav>
+  </header>
+
+  <!-- Home Page -->
+  <section id="home" class="page-section active">
+    <main class="container mx-auto px-4 py-8">
+      <!-- Chat Input Box -->
+      <div class="max-w-2xl mx-auto">
+        <textarea
+          class="w-full h-48 p-4 bg-gray-800 border border-gray-700 rounded-lg input-glow focus:outline-none"
+          placeholder="Paste your chat here..."
+        ></textarea>
+      </div>
+
+      <!-- Summary Buttons -->
+      <div class="flex justify-center gap-4 mt-6">
+        <button class="btn-hover bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">
+          Abstractive Summary
+        </button>
+        <button class="btn-hover bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg">
+          Extractive Summary
+        </button>
+      </div>
+
+      <!-- Output Box -->
+      <div class="max-w-2xl mx-auto mt-8 bg-gray-800 p-6 rounded-lg hidden" id="outputBox">
+        <p class="text-gray-300">Your summary will appear here...</p>
+        <button class="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+          Copy to Clipboard
+        </button>
+      </div>
+    </main>
+  </section>
+
+  <!-- About Page -->
+  <section id="about" class="page-section">
+    <main class="container mx-auto px-4 py-8">
+      <!-- Abstractive Summary Section -->
+      <div class="max-w-2xl mx-auto mb-12">
+        <h2 class="text-2xl font-bold text-blue-400 mb-4">What is Abstractive Summary?</h2>
+        <p class="text-gray-300 mb-4">
+          Abstractive summarization generates a concise summary by paraphrasing and interpreting the original text, creating new sentences that capture the essence.
+        </p>
+        
+      
+        <h2 class="text-2xl font-bold text-purple-400 mb-4">What is Extractive Summary?</h2>
+        <p class="text-gray-300 mb-4">
+          Extractive summarization selects key sentences or phrases directly from the original text to create a summary without altering the content.
+        </p>
+
+        <img src="https://miro.medium.com/v2/resize:fit:1400/1*SZsIV6bLqCHLXgWw5in7bA.png" alt="Extractive Summary" class="w-full rounded-lg img-hover">
+      </div>
+    </main>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-400">
+    <p>&copy; 2025 ChatSummify. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Function to switch between pages
+    function showPage(pageId) {
+      // Hide all sections
+      document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      // Show the selected section
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    // Example: Show output box when a button is clicked
+    document.querySelectorAll('button').forEach(button => {
+      button.addEventListener('click', () => {
+        document.getElementById('outputBox').classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
